@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.graphics.Color"/>
+        <import type="android.view.View"/>
+        <variable
+            name="color"
+            type="com.traderevolution.data.Color"/>
+        <variable
+            name="adapter"
+            type="com.traderevolution.ColorsRecyclerAdapter"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:onClick="@{() -> adapter.itemSelected(color)}"
+        android:background="@drawable/layout_bg"
+        app:isExpanded="@{color.expanded}"
+        app:color="@{color}">
+
+        <LinearLayout
+            android:id="@+id/expanded_layout"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="vertical"
+            android:visibility='@{color.expanded ? View.VISIBLE : View.GONE}'>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/colorName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_centerVertical="true"
+            android:textStyle="bold"
+            android:text="@{color.name}"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor='@{Color.parseColor(color.expanded ? "#000000": color.code)}' />
+
+    </RelativeLayout>
+
+</layout>
